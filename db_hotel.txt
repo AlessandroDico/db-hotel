@@ -42,7 +42,7 @@ dell’esecuzione della query)
 	
 	SELECT *
 	FROM `ospiti`
-	WHERE `date_of_birth` <= DATE_ADD(CURDATE(), INTERVAL - 240 MONTH)
+	WHERE `date_of_birth` <= DATE_SUB(CURDATE(), INTERVAL 240 MONTH)
 	
 	
 4● Seleziona tutti gli ospiti il cui nome inizia con la D
