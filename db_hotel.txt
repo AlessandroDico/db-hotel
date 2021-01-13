@@ -49,6 +49,12 @@ dell’esecuzione della query)
 	SELECT *
 	FROM `ospiti`
 	WHERE DATEDIFF(CURDATE(), `date_of_birth`) / 365 >= 20
+				
+	-------- OPPURE --------------
+	
+	SELECT *
+	FROM `ospiti`
+	WHERE TIMESTAMPDIFF(YEAR, `date_of_birth`, CURDATE()) >= 20
 	
 	
 4● Seleziona tutti gli ospiti il cui nome inizia con la D
