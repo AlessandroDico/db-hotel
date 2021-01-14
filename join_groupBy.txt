@@ -63,7 +63,8 @@ GROUP BY
 JOIN 
 
 6● Come si chiamano gli ospiti che hanno fatto più di due prenotazioni?
-
+	
+	
 
 7● Stampare tutti gli ospiti per ogni prenotazione
 	
@@ -97,10 +98,23 @@ JOIN
 	WHERE `pagamenti`.`status` = 'accepted'
 	AND MONTH(`prenotazioni`.`created_at`) = 05
 	
-	----------- non funziona
-JOIN `paganti`
-ON `paganti`.`id` = `pagamenti`.`pagante_id`
-	-----------
+	
+	
+		SELECT (`name`), `lastname`, `pagamenti`.`price`
+	FROM `ospiti`
+	
+	JOIN `prenotazioni_has_ospiti`
+	ON `prenotazioni_has_ospiti`.`ospite_id` = `ospiti`.`id`
+
+	JOIN `pagamenti`
+	ON  `pagamenti`.`prenotazione_id` = `prenotazioni_has_ospiti`.`prenotazione_id`
+
+	JOIN `prenotazioni`
+	ON `prenotazioni`.`id` = `prenotazioni_has_ospiti`.`prenotazione_id`
+
+	WHERE `pagamenti`.`status` = 'accepted'
+	AND MONTH(`prenotazioni`.`created_at`) = 05
+
 	
 	
 9● Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano (con pagamento accettato)
@@ -134,9 +148,15 @@ ON `paganti`.`id` = `pagamenti`.`pagante_id`
 	
 	
 	
+11● Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate)
 	
-	
-	
+	SELECT *
+	FROM `prenotazioni`
+
+	RIGHT JOIN `stanze`
+	ON `stanze`.`id` = `prenotazioni`.`stanza_id`
+
+	WHERE `prenotazioni`.`stanza_id` IS NULL
 	
 	
 	
