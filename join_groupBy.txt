@@ -60,11 +60,72 @@ GROUP BY
 	ORDER BY `numero_max_prenotazioni` DESC
 	LIMIT 1
 
+JOIN 
+
+6● Come si chiamano gli ospiti che hanno fatto più di due prenotazioni?
 
 
-
-
-
+7● Stampare tutti gli ospiti per ogni prenotazione
+	
+	SELECT *
+	FROM `prenotazioni_has_ospiti`
+	JOIN `ospiti`
+	ON `prenotazioni_has_ospiti`.`ospite_id` = `ospiti`.`id` 
+	
+	----------OPPURE------------
+	
+	SELECT *
+	FROM `ospiti`
+	JOIN `prenotazioni_has_ospiti`
+	ON `prenotazioni_has_ospiti`.`ospite_id` = `ospiti`.`id`
+	
+	
+8● Stampare Nome, Cognome, Prezzo e Pagante per tutte le prenotazioni fatte a Maggio 2018
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 
