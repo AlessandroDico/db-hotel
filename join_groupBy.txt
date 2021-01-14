@@ -83,8 +83,19 @@ JOIN
 8● Stampare Nome, Cognome, Prezzo e Pagante per tutte le prenotazioni fatte a Maggio 2018
 	
 	
-	
-	
+	SELECT (`name`), `lastname`, `pagamenti`.`price`
+	FROM `ospiti`
+	JOIN `prenotazioni_has_ospiti`
+	ON `prenotazioni_has_ospiti`.`ospite_id` = `ospiti`.`id`
+
+	JOIN `pagamenti`
+	ON  `pagamenti`.`prenotazione_id` = `prenotazioni_has_ospiti`.`prenotazione_id`
+
+	JOIN `prenotazioni`
+	ON `prenotazioni`.`id` = `prenotazioni_has_ospiti`.`prenotazione_id`
+
+	WHERE `pagamenti`.`status` = 'accepted'
+	AND MONTH(`prenotazioni`.`created_at`) = 05
 	
 	
 	
