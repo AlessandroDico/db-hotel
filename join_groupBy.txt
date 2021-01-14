@@ -97,7 +97,11 @@ JOIN
 	WHERE `pagamenti`.`status` = 'accepted'
 	AND MONTH(`prenotazioni`.`created_at`) = 05
 	
-
+	----------- non funziona
+JOIN `paganti`
+ON `paganti`.`id` = `pagamenti`.`pagante_id`
+	-----------
+	
 	
 9● Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano (con pagamento accettato)
 	
@@ -114,6 +118,19 @@ JOIN
 	AND `stanze`.`floor` = 1
 	
 	
+10● Prendi i dati di fatturazione per la prenotazione con id=7
+
+	SELECT (`paganti`.`name`), `paganti`.`lastname`, `paganti`.`address`, `paganti`.`created_at`
+
+	FROM `pagamenti`
+
+	JOIN `prenotazioni`
+	ON `prenotazioni`.`id` = `pagamenti`.`prenotazione_id`
+
+	JOIN `paganti`
+	ON `paganti`.`id` = `pagamenti`.`pagante_id`
+    
+	WHERE `prenotazioni`.`id` = 7
 	
 	
 	
