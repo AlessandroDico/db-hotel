@@ -65,6 +65,15 @@ JOIN
 
 6● Come si chiamano gli ospiti che hanno fatto più di due prenotazioni?
 
+	SELECT COUNT(*) AS `numero_prenotazioni` ,`prenotazioni_has_ospiti`.`ospite_id`, `name`, `lastname`
+	FROM `ospiti`
+
+	JOIN `prenotazioni_has_ospiti`
+	ON `prenotazioni_has_ospiti`.`ospite_id` =`ospiti`.`id`
+
+	GROUP BY `prenotazioni_has_ospiti`.`ospite_id`
+
+	HAVING `numero_prenotazioni` > 2
 
 	
 
@@ -103,6 +112,7 @@ JOIN
 
 	WHERE `pagamenti`.`status` = 'accepted'
 	AND MONTH(`prenotazioni`.`created_at`) = 05
+	AND YEAR(`prenotazioni`.`created_at`) = 2018
 
 	
 	
