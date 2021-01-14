@@ -60,10 +60,17 @@ GROUP BY
 	ORDER BY `numero_max_prenotazioni` DESC
 	LIMIT 1
 
+
 JOIN 
 
 6● Come si chiamano gli ospiti che hanno fatto più di due prenotazioni?
-	
+	SELECT name, lastname, COUNT(*) AS numero_referenza
+FROM ospiti
+JOIN prenotazioni_has_ospiti
+ON ospiti.id = prenotazioni_has_ospiti.ospite_id
+GROUP BY ospiti.name, ospiti.lastname
+HAVING numero_referenza > 2
+ORDER BY numero_referenza DESC ;
 	
 
 7● Stampare tutti gli ospiti per ogni prenotazione
@@ -84,7 +91,7 @@ JOIN
 8● Stampare Nome, Cognome, Prezzo e Pagante per tutte le prenotazioni fatte a Maggio 2018
 	
 	
-	SELECT (`name`), `lastname`, `pagamenti`.`price`
+	SELECT `ospiti`.`name`, `ospiti`.`lastname`, `pagamenti`.`price`, `paganti`.`name`, `paganti`.`lastname`
 	FROM `ospiti`
 	JOIN `prenotazioni_has_ospiti`
 	ON `prenotazioni_has_ospiti`.`ospite_id` = `ospiti`.`id`
@@ -94,23 +101,10 @@ JOIN
 
 	JOIN `prenotazioni`
 	ON `prenotazioni`.`id` = `prenotazioni_has_ospiti`.`prenotazione_id`
-
-	WHERE `pagamenti`.`status` = 'accepted'
-	AND MONTH(`prenotazioni`.`created_at`) = 05
 	
 	
-	
-		SELECT (`name`), `lastname`, `pagamenti`.`price`
-	FROM `ospiti`
-	
-	JOIN `prenotazioni_has_ospiti`
-	ON `prenotazioni_has_ospiti`.`ospite_id` = `ospiti`.`id`
-
-	JOIN `pagamenti`
-	ON  `pagamenti`.`prenotazione_id` = `prenotazioni_has_ospiti`.`prenotazione_id`
-
-	JOIN `prenotazioni`
-	ON `prenotazioni`.`id` = `prenotazioni_has_ospiti`.`prenotazione_id`
+	JOIN `paganti`
+	ON `paganti`.`id` = `pagamenti`.`pagante_id`
 
 	WHERE `pagamenti`.`status` = 'accepted'
 	AND MONTH(`prenotazioni`.`created_at`) = 05
@@ -162,9 +156,7 @@ JOIN
 	
 	
 	
-	
-	
-	
+
 	
 	
 	
