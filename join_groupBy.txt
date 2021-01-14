@@ -64,13 +64,8 @@ GROUP BY
 JOIN 
 
 6● Come si chiamano gli ospiti che hanno fatto più di due prenotazioni?
-	SELECT name, lastname, COUNT(*) AS numero_referenza
-FROM ospiti
-JOIN prenotazioni_has_ospiti
-ON ospiti.id = prenotazioni_has_ospiti.ospite_id
-GROUP BY ospiti.name, ospiti.lastname
-HAVING numero_referenza > 2
-ORDER BY numero_referenza DESC ;
+
+
 	
 
 7● Stampare tutti gli ospiti per ogni prenotazione
