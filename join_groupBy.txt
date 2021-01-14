@@ -97,12 +97,21 @@ JOIN
 	WHERE `pagamenti`.`status` = 'accepted'
 	AND MONTH(`prenotazioni`.`created_at`) = 05
 	
+
+	
+9● Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano (con pagamento accettato)
 	
 	
-	
-	
-	
-	
+	SELECT SUM(`pagamenti`.`price`) AS somma_prezzi_stanze_primo_piano
+	FROM `prenotazioni`
+	JOIN `stanze`
+	ON `stanze`.`id` = `prenotazioni`.`stanza_id`
+
+	JOIN `pagamenti`
+	ON `pagamenti`.`prenotazione_id` = `prenotazioni`.`id`
+
+	WHERE `pagamenti`.`status` = 'accepted'
+	AND `stanze`.`floor` = 1
 	
 	
 	
